@@ -1,0 +1,285 @@
+/* ============================================================
+   HEADER — Uses shared .container + Theme Support
+   ============================================================ */
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 1000;
+  padding: 1.5rem 0;
+  transition: all 0.4s ease;
+  background: transparent;
+}
+
+.header.scrolled {
+  padding: 1rem 0;
+  background: var(--bg-card);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 2rem;
+}
+
+/* ===== Logo ===== */
+.logo {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  text-decoration: none;
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+.logo:hover { transform: scale(1.05); }
+
+.logo-icon { display: flex; align-items: center; gap: 3px; }
+
+.logo-icon span {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #2563eb, #38bdf8);
+  box-shadow: 0 0 8px var(--glow-color);
+  animation: pulse 2s ease-in-out infinite;
+}
+
+.logo-icon span:nth-child(2) { animation-delay: 0.2s; }
+.logo-icon span:nth-child(3) { animation-delay: 0.4s; }
+
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50%      { transform: scale(1.3); opacity: 0.7; }
+}
+
+.logo-text {
+  font-family: var(--font-heading);
+  font-size: 1.45rem;
+  font-weight: 800;
+  letter-spacing: -0.5px;
+  color: var(--text-main);
+  transition: color 0.5s ease;
+}
+
+.logo-text span {
+  background: linear-gradient(135deg, #2563eb, #38bdf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* ===== Desktop Navigation ===== */
+.nav-desktop {
+  flex: 1;
+  display: flex;
+  justify-content: center;
+}
+
+.nav-list {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  list-style: none;
+}
+
+.nav-item {
+  opacity: 0;
+  animation: fadeInUp 0.5s ease forwards;
+}
+
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(-10px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+.nav-link {
+  position: relative;
+  display: block;
+  padding: 0.6rem 1.2rem;
+  text-decoration: none;
+  color: var(--text-muted);
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 700;
+  border-radius: 8px;
+  transition: color 0.3s ease;
+  overflow: hidden;
+}
+
+.nav-link::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: var(--border-color);
+  border-radius: 8px;
+  transform: scale(0);
+  transition: transform 0.3s ease;
+  z-index: -1;
+}
+
+.nav-link:hover::before { transform: scale(1); }
+.nav-link:hover { color: var(--primary-light); }
+
+.nav-underline {
+  position: absolute;
+  bottom: 4px;
+  left: 50%;
+  width: 0;
+  height: 2px;
+  background: linear-gradient(135deg, #2563eb, #38bdf8);
+  transition: all 0.3s ease;
+  transform: translateX(-50%);
+  border-radius: 2px;
+}
+
+.nav-link:hover .nav-underline { width: 60%; }
+
+/* ===== Header Actions (Theme + CTA) ===== */
+.header-actions {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+/* ☀️/🌙 Theme Button */
+.theme-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: 1px solid var(--border-color);
+  background: var(--bg-card);
+  color: var(--text-main);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+}
+
+.theme-btn:hover {
+  background: var(--border-color);
+  transform: scale(1.1) rotate(15deg);
+}
+
+/* CTA Button */
+.cta-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #2563eb, #38bdf8);
+  color: white;
+  text-decoration: none;
+  border-radius: 12px;
+  font-family: var(--font-heading);
+  font-size: 0.9rem;
+  font-weight: 700;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px var(--glow-color);
+  position: relative;
+  overflow: hidden;
+}
+
+.cta-button:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px var(--glow-color);
+}
+
+.cta-button svg { transition: transform 0.3s ease; }
+.cta-button:hover svg { transform: translateX(4px); }
+
+/* ===== Mobile Toggle ===== */
+.mobile-toggle {
+  display: none;
+  flex-direction: column;
+  gap: 5px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0.5rem;
+  z-index: 1001;
+}
+
+.mobile-toggle span {
+  display: block;
+  width: 25px;
+  height: 2px;
+  background: var(--text-main);
+  border-radius: 2px;
+  transition: all 0.3s ease;
+}
+
+.mobile-toggle.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+.mobile-toggle.active span:nth-child(2) { opacity: 0; }
+.mobile-toggle.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
+
+/* ===== Mobile Navigation ===== */
+.nav-mobile {
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100vh;
+  background: var(--bg-main);
+  backdrop-filter: blur(20px);
+  transform: translateX(100%);
+  transition: transform 0.4s ease;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 999;
+}
+
+.nav-mobile.open { transform: translateX(0); }
+
+.nav-mobile-list {
+  list-style: none;
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.nav-mobile-link {
+  text-decoration: none;
+  color: var(--text-main);
+  font-family: var(--font-heading);
+  font-size: 2rem;
+  font-weight: 800;
+  transition: all 0.3s ease;
+}
+
+.nav-mobile-link:hover { color: var(--primary-light); }
+
+.nav-mobile-cta {
+  display: inline-block;
+  padding: 1rem 2.5rem;
+  background: linear-gradient(135deg, #2563eb, #38bdf8);
+  color: white;
+  text-decoration: none;
+  border-radius: 12px;
+  font-family: var(--font-heading);
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-top: 1rem;
+}
+
+/* ===== Responsive ===== */
+@media (max-width: 1024px) {
+  .nav-desktop, .cta-button { display: none; }
+  .mobile-toggle { display: flex; }
+}
+
+@media (max-width: 480px) {
+  .logo-text { font-size: 1.2rem; }
+  .nav-mobile-link { font-size: 1.6rem; }
+}

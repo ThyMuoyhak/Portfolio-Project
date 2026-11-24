@@ -1,0 +1,247 @@
+/* ============================================================
+   PROJECTS SECTION — 4 Columns Grid
+   ============================================================ */
+
+.projects-section {
+  position: relative;
+  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+  padding: 6rem 0;
+}
+
+/* ===== Header ===== */
+.projects-header {
+  text-align: center;
+  margin-bottom: 4rem;
+}
+
+.projects-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.75rem;
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--primary-light);
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  margin-bottom: 1rem;
+  opacity: 0;
+  transform: translateY(20px);
+  transition: all 0.7s ease 0.1s;
+}
+
+.projects-section.visible .projects-eyebrow {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.projects-eyebrow-line {
+  width: 30px;
+  height: 2px;
+  background: linear-gradient(to right, var(--primary-light), #2563eb);
+  border-radius: 2px;
+}
+
+.projects-title {
+  font-family: var(--font-heading);
+  font-size: clamp(2rem, 4vw, 3.5rem);
+  font-weight: 800;
+  color: var(--text-main);
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.9s ease 0.2s;
+}
+
+.projects-section.visible .projects-title {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ===== ប្លង់ ៤ ជួរឈរ (Grid) ===== */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 1.5rem;
+  width: 100%;
+}
+
+/* ===== កាតគម្រោង (Project Card) ===== */
+.project-card {
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  background: var(--bg-card);
+  border: 1px solid var(--border-color);
+  border-radius: 20px;
+  overflow: hidden;
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+  
+  /* ចលនាពេលអូសមកដល់ */
+  opacity: 0;
+  transform: translateY(40px);
+}
+
+.projects-section.visible .project-card {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Hover Effect */
+.project-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--primary-light);
+  box-shadow: 0 15px 30px var(--glow-color);
+}
+
+/* ===== រូបភាព ===== */
+.project-image-wrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3; /* ធ្វើអោយរូបភាពកាតកាន់តែស្អាត */
+  overflow: hidden;
+  background: var(--border-color);
+}
+
+.project-image {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.project-card:hover .project-image {
+  transform: scale(1.08);
+}
+
+/* Overlay ពេល Hover */
+.project-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(37, 99, 235, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  backdrop-filter: blur(2px);
+}
+
+.project-card:hover .project-overlay {
+  opacity: 1;
+}
+
+.project-view-btn {
+  padding: 0.5rem 1.2rem;
+  background: #ffffff;
+  color: #0b1220;
+  font-family: var(--font-heading);
+  font-size: 0.85rem;
+  font-weight: 700;
+  border-radius: 50px;
+  transform: translateY(15px);
+  transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.project-card:hover .project-view-btn {
+  transform: translateY(0);
+}
+
+/* ===== ព័ត៌មានលម្អិត ===== */
+.project-info {
+  padding: 1.25rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.project-category {
+  font-family: var(--font-heading);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--primary-light);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 0.5rem;
+}
+
+.project-title {
+  font-family: var(--font-heading);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--text-main);
+  margin-bottom: 0.5rem;
+  transition: color 0.3s ease;
+}
+
+.project-card:hover .project-title {
+  color: var(--primary-light);
+}
+
+.project-desc {
+  font-family: var(--font-primary);
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-muted);
+  line-height: 1.5;
+  margin-bottom: 1rem;
+  flex: 1;
+  
+  /* កាត់អក្សរបើវាវែងពេក (សម្រាប់ ៤ ជួរឈរ) */
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* ===== Tags ===== */
+.project-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.project-tag {
+  padding: 0.3rem 0.6rem;
+  background: var(--bg-main);
+  border: 1px solid var(--border-color);
+  border-radius: 6px;
+  font-family: var(--font-primary);
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--text-main);
+  transition: all 0.3s ease;
+}
+
+.project-card:hover .project-tag {
+  border-color: var(--primary-light);
+}
+
+/* ============================================================
+   Responsive (ពេលអេក្រង់តូច)
+   ============================================================ */
+
+@media (max-width: 1200px) {
+  .projects-grid {
+    grid-template-columns: repeat(2, 1fr); /* ២ ជួរឈរពេលអេក្រង់មធ្យម */
+    gap: 2rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .projects-grid {
+    grid-template-columns: 1fr; /* ១ ជួរឈរពេលបើកលើទូរស័ព្ទ */
+    gap: 1.5rem;
+  }
+  
+  .projects-section {
+    padding: 4rem 0;
+  }
+}

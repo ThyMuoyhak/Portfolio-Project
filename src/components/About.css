@@ -1,0 +1,26 @@
+.about { position: relative; width: 100%; min-height: 100vh; display: flex; align-items: center; overflow: hidden; }
+.about-2col { display: grid; grid-template-columns: 1fr 1.1fr; gap: 4rem; align-items: center; width: 100%; }
+.about-visual-col { position: relative; display: flex; align-items: center; justify-content: center; height: 100%; min-height: 400px; opacity: 0; transform: translateX(-50px); transition: all 1.2s cubic-bezier(0.16, 1, 0.3, 1); }
+.about.visible .about-visual-col { opacity: 1; transform: translateX(0); }
+.about-sphere-container { position: relative; width: 100%; height: 100%; min-height: 500px; }
+.sphere-canvas { width: 100%; height: 100%; filter: drop-shadow(0 0 30px var(--glow-color)); }
+.about-text-col { max-width: 650px; text-align: left; }
+.about-eyebrow { display: inline-flex; align-items: center; gap: 0.75rem; font-family: var(--font-heading); font-size: 0.85rem; font-weight: 700; color: var(--primary-light); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 1.5rem; opacity: 0; transform: translateX(20px); transition: all 0.7s ease 0.1s; }
+.about.visible .about-eyebrow { opacity: 1; transform: translateX(0); }
+.about-eyebrow-line { width: 40px; height: 2px; background: linear-gradient(to right, var(--primary-light), var(--primary)); border-radius: 2px; }
+.about-title { font-family: var(--font-heading); font-size: clamp(2rem, 4.5vw, 3.5rem); font-weight: 800; line-height: 1.1; color: var(--text-main); margin-bottom: 2rem; opacity: 0; transform: translateY(30px); transition: all 0.9s ease 0.2s, color 0.5s ease; }
+.about.visible .about-title { opacity: 1; transform: translateY(0); }
+.about-name { background: linear-gradient(135deg, #1d4ed8, #38bdf8, #3b82f6); background-size: 300% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: about-name-shine 4s ease-in-out infinite; }
+@keyframes about-name-shine { 0%, 100% { background-position: 0% center; } 50% { background-position: 100% center; } }
+.about-bio { margin-bottom: 2.5rem; }
+.about-text { font-family: var(--font-primary); font-size: clamp(1rem, 1.2vw, 1.1rem); font-weight: 500; line-height: 1.7; color: var(--text-muted); margin-bottom: 1.25rem; opacity: 0; transform: translateY(20px); transition: all 0.9s ease, color 0.5s ease; }
+.about.visible .about-text:nth-child(1) { transition-delay: 0.35s; opacity: 1; transform: translateY(0); }
+.about.visible .about-text:nth-child(2) { transition-delay: 0.45s; opacity: 1; transform: translateY(0); }
+.about-text strong { color: var(--text-main); font-weight: 700; transition: color 0.5s ease; }
+.about-actions { display: flex; opacity: 0; transform: translateY(20px); transition: all 0.9s ease 0.6s; }
+.about.visible .about-actions { opacity: 1; transform: translateY(0); }
+.about-btn { display: inline-flex; padding: 0.9rem 1.8rem; font-family: var(--font-heading); font-size: 0.95rem; font-weight: 700; border-radius: 14px; text-decoration: none; cursor: pointer; border: none; }
+.about-btn.primary { background: linear-gradient(135deg, #1d4ed8, #3b82f6, #38bdf8); background-size: 200% auto; color: white; box-shadow: 0 6px 20px var(--glow-color); animation: gradient-shine 4s ease-in-out infinite; }
+.about-btn.primary:hover { transform: translateY(-3px); box-shadow: 0 12px 30px var(--glow-color); }
+@keyframes gradient-shine { 0%, 100% { background-position: 0% center; } 50% { background-position: 100% center; } }
+@media (max-width: 968px) { .about-2col { grid-template-columns: 1fr; gap: 2rem; padding-top: 4rem; } .about-visual-col { order: -1; min-height: 300px; } .about-sphere-container { min-height: 300px; } .about-text-col { text-align: center; max-width: 100%; } .about-eyebrow { justify-content: center; } .about-actions { justify-content: center; } }

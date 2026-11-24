@@ -1,0 +1,58 @@
+.network-bg {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  background: var(--bg-main); /* ប្តូរតាម Theme ដោយស្វ័យប្រវត្តិ */
+  transition: background-color 0.5s ease;
+}
+
+.network-bg-canvas {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+
+.network-bg-grid {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(var(--border-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--border-color) 1px, transparent 1px);
+  background-size: 70px 70px;
+  mask-image: radial-gradient(ellipse 90% 80% at 60% 50%, #000 20%, transparent 85%);
+  -webkit-mask-image: radial-gradient(ellipse 90% 80% at 60% 50%, #000 20%, transparent 85%);
+  animation: network-grid-drift 40s linear infinite;
+  opacity: 0.5;
+}
+
+@keyframes network-grid-drift {
+  0%   { background-position: 0 0, 0 0; }
+  100% { background-position: 70px 70px, 70px 70px; }
+}
+
+.network-bg-glow {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 15% 20%, var(--glow-color), transparent 45%),
+    radial-gradient(circle at 85% 70%, var(--glow-color), transparent 50%);
+  pointer-events: none;
+  animation: glow-pulse 8s ease-in-out infinite;
+  opacity: 0.3;
+}
+
+@keyframes glow-pulse {
+  0%, 100% { opacity: 0.2; }
+  50%      { opacity: 0.5; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .network-bg-grid,
+  .network-bg-glow {
+    animation: none !important;
+  }
+}
